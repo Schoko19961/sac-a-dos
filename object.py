@@ -1,9 +1,7 @@
-
-
 from parametres import Parametres
 
 
-class Object:
+class Object(object):
 
     def __init__(self, weight: int = None, value:int = None):
         if not weight:

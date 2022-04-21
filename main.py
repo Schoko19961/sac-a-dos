@@ -6,3 +6,4 @@ from population import Population
 objects = [Object() for _ in range(Parametres.NB_OBJ)]
 
 population = Population(objects)
+population.run()

@@ -36,6 +36,18 @@ class Bag(object):
         for index in range(len(self.isIn)):
             value += self.objects[index].value * self.isIn[index]
         return value
+
+    @staticmethod
+    def create_child(mere, pere):
+        # 1 to have at least one part from the mother % -2 to have at least one part of the father
+        mere_size = Parametres.random.randint(1, Parametres.NB_OBJ - 2)
+        new_isIn = mere.isIn[:mere_size] + pere.isIn[mere_size:]
+        child = Bag(mere.objects, new_isIn)
+        child.mutate()
+        return child
+
+    def mutate(self):
+        pass
     
     def __str__(self) -> str:
         return '[{}] Bag - Items : {} - Weight : {} - Value : {}'.format(self.calcul_fitness(), sum(self.isIn), self.calcul_weight(), self.calcul_value())
