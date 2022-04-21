@@ -1,0 +1,20 @@
+
+
+from parametres import Parametres
+
+
+class Object:
+
+    def __init__(self, weight: int = None, value:int = None):
+        if not weight:
+            self.weight = Parametres.random.randint(Parametres.WEIGHT_MIN, Parametres.WEIGHT_MAX)
+        else:
+            self.weight = weight
+        
+        if not value:
+            self.value = Parametres.random.randint(Parametres.VALUE_MIN, Parametres.VALUE_MAX)
+        else : 
+            self.value = value
+
+    def __str__(self) -> str:
+        return 'Object - Weight : {} - Value : {} - Ratio : {}'.format(self.weight, self.value, self.value / self.weight)
