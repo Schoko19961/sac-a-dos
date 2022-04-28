@@ -7,7 +7,7 @@ from parametres import Parametres
 
 
 class Bag(Genome):
-    def __init__(self, objects: List[Object], isIn: List[bool] = None):
+    def __init__(self, objects: List[Object], isIn: List[bool] = None) -> None:
         super().__init__()
         self.objects = objects
         if not isIn:

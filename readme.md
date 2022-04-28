@@ -1,5 +1,11 @@
 # Sac a dos
+# Setup
+Ce code est testé avec Python 3.10
 
+Exigences: 
+```
+pip install typing_extensions
+```
 # Le probleme
 Une personne part en randonnée et emporte son sac à dos avec lui. Pour son voyage, il souhaite mettre quelques objets dans son sac à dos, mais il n'est pas assez solide pour tous les emballer, il doit donc limiter le poids.
 Pour décider quels objets mettre dans son sac à dos, il a donné une valeur à chacun d'entre eux. Il essaie d'emporter la plus grande valeur sans dépasser la limite de poids.
@@ -38,3 +44,6 @@ Encore une fois il y a plusieurs possibilités pour la réalisation de cette fon
 1. Les valeurs des objets sont ajoutées et les poids sont supprimés
 2. On utilise la relation entre valeur et poids pour rapidement trouver les objets les plus efficaces.
 3. On somme les valeurs, mais si le sac est trop lourd, il a une valeur négative ou 0.
+
+# Abstraction
+Dans ce projet un peu d'abstraction était ajouté. Les classes "Population" et "Genome" peuvent être réutilisés. Sauf l'implementation de classe "Genome" doit être refait pour les nouvelles projets.
