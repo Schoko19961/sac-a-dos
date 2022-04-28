@@ -1,4 +1,5 @@
 from typing import List
+from typing_extensions import Self
 from genome import Genome
 
 from object import Object
@@ -15,24 +16,24 @@ class Bag(Genome):
             self.genome = isIn
         self.fitness = self.evaluate()
 
-    def calcul_weight(self) -> int:
+    def calculate_weight(self) -> int:
         weight = 0
         for index in range(len(self.genome)):
             weight += self.objects[index].weight * self.genome[index]
         return weight
 
         
-    def calcul_value(self) -> int:
+    def calculate_value(self) -> int:
         value = 0
         for index in range(len(self.genome)):
             value += self.objects[index].value * self.genome[index]
         return value
 
-    def create_child(self, pere):
-        # 1 to have at least one part from the mother | -2 to have at least one part of the father
+    def create_child(self, father: Self) -> Self:
+        # 1 to have at least one part from the mother & -2 to have at least one part of the father
         mere_size = Parametres.random.randint(1, Parametres.NB_OBJ - 2)
-        new_isIn = self.genome[:mere_size] + pere.genome[mere_size:]
-        child = Bag(self.objects, new_isIn)
+        new_genome = self.genome[:mere_size] + father.genome[mere_size:]
+        child = Bag(self.objects, new_genome)
         child.mutate()
         return child
 
@@ -48,4 +49,4 @@ class Bag(Genome):
         return max(Parametres.MAX - weight, 10)
     
     def __str__(self) -> str:
-        return '[{}] Bag - Items : {} - Weight : {} - Value : {}'.format(self.evaluate(), sum(self.genome), self.calcul_weight(), self.calcul_value())
+        return '[{}] Bag - Items : {} - Weight : {} - Value : {}'.format(self.evaluate(), sum(self.genome), self.calculate_weight(), self.calculate_value())

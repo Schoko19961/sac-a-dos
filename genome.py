@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing_extensions import Self
 
 class Genome(ABC):
     def __init__(self, genome = []) -> None:
@@ -15,5 +16,5 @@ class Genome(ABC):
         pass
 
     @abstractmethod
-    def create_child(pere):
+    def create_child(father: Self) -> Self:
         pass
