@@ -1,14 +1,12 @@
 import math
 from typing import List
-from bag import Bag
-
-from object import Object
+from genome import Genome
 from parametres import Parametres
 
 
 class Population(object):
-    def __init__(self, objects: List[Object]) -> None:
-        self.population = [Bag(objects) for _ in range(Parametres.POPULATION_SIZE)]
+    def __init__(self, population: List[Genome]) -> None:
+        self.population = population
         self.best = self.population[0]
         self.iteration = 0
     
@@ -27,11 +25,11 @@ class Population(object):
                 print(self)
 
 
-            new_population = [Bag.create_child(self.selection(), self.selection()) for _ in range(Parametres.POPULATION_SIZE - 1)]
+            new_population = [self.selection().create_child(self.selection()) for _ in range(Parametres.POPULATION_SIZE - 1)]
             new_population.append(self.best)
             self.population = new_population
 
-    def selection(self) -> Bag:
+    def selection(self) -> Genome:
         list_len = len(self.population)
         totalRanks = math.floor(list_len * (list_len + 1) / 2)
         rand = Parametres.random.randint(0, totalRanks -1)
@@ -46,7 +44,7 @@ class Population(object):
         return self.population[indIndex]
 
     def __str__(self) -> str:
-        return "**** Iteration {} ****\n{}".format(self.iteration, self.best)
+        return "**** Iteration {} ****\n{}".format(self.iteration, self.best.fitness)
 
 
     
