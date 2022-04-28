@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
 
 class Genome(ABC):
-    def __init__(self) -> None:
-        self.fitness = -1
+    def __init__(self, genome = []) -> None:
         super().__init__()
+        self.fitness = -1
+        self.genome = genome
 
     @abstractmethod
     def mutate(self) -> None:
