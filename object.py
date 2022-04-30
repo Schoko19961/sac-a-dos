@@ -1,6 +1,5 @@
 from parametres import Parametres
 
-
 class Object(object):
 
     def __init__(self, weight: int = None, value:int = None):
