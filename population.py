@@ -8,17 +8,19 @@ class Population(object):
     def __init__(self, population: List[Genome]) -> None:
         self.population = population
         self.best = self.population[0]
-        self.history: List[float] = []
+        self.history: List[Genome] = []
     
     def run(self) -> None:
         for iteration in range(Parametres.MAX_ITERATIONS):
-            self.population.sort(key=lambda bag: bag.fitness)
+            for genome in self.population:
+                genome.evaluate()
+            self.population.sort(key=lambda genome: genome.fitness, reverse=True)
             # Print new Genome if better one was found
             if self.best.fitness < self.population[0].fitness:
                 self.best = self.population[0]
                 print(self.best)
             
-            self.history.append(self.best.fitness)
+            self.history.append(self.best)
             # Print every 100 iterations
             if (iteration + 1) % 100 == 0:
                 print(self)
@@ -44,7 +46,9 @@ class Population(object):
         return self.population[indIndex]
 
     def __str__(self) -> str:
-        return "**** Iteration {} -> fitness: {} ****\n{}".format(len(self.history), self.best.fitness, self.best)
+        ret_str = "**** Iteration {} -> fitness: {} ****\n{}".format(len(self.history), self.best.fitness, self.best)
+        # ret_str += "\n{}".format(self.best.genome)
+        return ret_str
 
 
     

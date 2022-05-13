@@ -4,12 +4,12 @@ class Object(object):
 
     def __init__(self, weight: int = None, value:int = None):
         if not weight:
-            self.weight = Parametres.random.randint(Parametres.WEIGHT_MIN, Parametres.WEIGHT_MAX)
+            self.weight = Parametres.random.randint(Parametres.OBJ_WEIGHT_MIN, Parametres.OBJ_WEIGHT_MAX)
         else:
             self.weight = weight
         
         if not value:
-            self.value = Parametres.random.randint(Parametres.VALUE_MIN, Parametres.VALUE_MAX)
+            self.value = Parametres.random.randint(Parametres.OBJ_VALUE_MIN, Parametres.OBJ_VALUE_MAX)
         else : 
             self.value = value
 

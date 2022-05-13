@@ -4,7 +4,7 @@ Ce code est testé avec Python 3.10
 
 Exigences: 
 ```
-pip install typing_extensions
+pip install typing_extensions matplotlib
 ```
 # Le probleme
 Une personne part en randonnée et emporte son sac à dos avec lui. Pour son voyage, il souhaite mettre quelques objets dans son sac à dos, mais il n'est pas assez solide pour tous les emballer, il doit donc limiter le poids.
