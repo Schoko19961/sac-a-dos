@@ -56,14 +56,38 @@ class Bag(Genome):
                 self.genome[pos] = not self.genome[pos]
 
     def evaluate(self) -> float:
+        return self.evaluate1()
+
+    def evaluate1(self) -> float:
         # Pour le calcul du fitness, plus la valeur est grande, plus c'est positif.
         value = self.calculate_value()
         weight = self.calculate_weight()
         if(weight > Parametres.BAG_WEIGHT_MAX):
             self.fitness = 0
         else:
-            self.fitness = value - weight / 10
+            self.fitness = value - weight
         return self.fitness
     
+    def evaluate2(self) -> float:
+        # Pour le calcul du fitness, plus la valeur est grande, plus c'est positif.
+        value = self.calculate_value()
+        weight = self.calculate_weight()
+        if(weight > Parametres.BAG_WEIGHT_MAX):
+            self.fitness = 0
+        else:
+            self.fitness = value
+        return self.fitness
+    
+    def evaluate3(self) -> float:
+        # Pour le calcul du fitness, plus la valeur est grande, plus c'est positif.
+        value = self.calculate_value()
+        weight = self.calculate_weight()
+        if(weight > Parametres.BAG_WEIGHT_MAX):
+            self.fitness = 0
+        else:
+            self.fitness = value + value / weight * sum(self.genome)
+        return self.fitness
+
+
     def __str__(self) -> str:
         return '[{}] Bag - Items : {} - Weight : {}/{} - Value : {}'.format(self.evaluate(), sum(self.genome), self.calculate_weight(), Parametres.BAG_WEIGHT_MAX ,self.calculate_value())
