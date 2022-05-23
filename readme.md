@@ -11,6 +11,7 @@ Une personne part en randonnée et emporte son sac à dos avec lui. Pour son voy
 Pour décider quels objets mettre dans son sac à dos, il a donné une valeur à chacun d'entre eux. Il essaie d'emporter la plus grande valeur sans dépasser la limite de poids.
 
 # Les objets nécessaire
+![Failed to find animation](./img/classes.png)
 ## Objet
 - Un objet a une valeur et un poids. 
 - Les objets sont invariables pendant tous les calculs pour le meilleur resultat.
@@ -33,9 +34,9 @@ Le génome contient l'information sur quels objets sont dans le sac a dos. Donc 
 
 Il y a deux possibilités pour conserver cette information dans un génome.
 1. Le génome contient tous les objets et l'ordre des objets est important pour déterminer quels objets sont dans le sac. (Tous les objets jusqu'à ce que le sac à dos soit trop lourd.)
-![Failed to find animation](./animation2.gif)
+![Failed to find animation](./img/animation2.gif)
 2. Le génome contient l'information pour tous les objets si l'objet est dans le sac ou non. (Si le sac est trop lourd, il a une valeur de 0 (fitness))
-![Failed to find animation](./animation1.gif)
+![Failed to find animation](./img/animation1.gif)
 
 La premiere approche est la moins bonne puisqu'il est impossible d'utiliser le principe de mère et père, seulement la Mytose. C'est parce que si on melange les objets des deux sacs à dos, on risque de dupliquer certains objets et d'en supprimer d'autres.
 

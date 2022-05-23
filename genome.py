@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing_extensions import Self
 
+# Classe abstracte pour le genome. Définit que le génome est un tableau et les fonctions obligatoires.
 class Genome(ABC):
     def __init__(self, genome = []) -> None:
         super().__init__()

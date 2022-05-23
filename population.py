@@ -11,20 +11,22 @@ class Population(object):
         self.history: List[Genome] = []
     
     def run(self) -> None:
-
         for iteration in range(Parametres.MAX_ITERATIONS):
+            # Fait l'évalutaion pour tous les genomes dans la population.
             for genome in self.population:
                 genome.evaluate()
+            # Trier selon le fitness.
             self.population.sort(key=lambda genome: genome.fitness, reverse=True)
-            # Print new Genome if better one was found
+            # Imprimer le meilleur genome si un nouveau est trouvé
             if self.best.fitness < self.population[0].fitness:
                 self.best = self.population[0]
                 print(self)
-            
+            # Ajoute le meilleure genome à l'histoire
             self.history.append(self.best)
-            # Print every 100 iterations
+            # Imprimer la population tout les 100 iterations.
             if (iteration + 1) % 100 == 0:
                 print(self)
+            # Fait une nouvelle population bases sur le principe mère-père.
             new_population = [self.selection().create_child(self.selection()) for _ in range(Parametres.POPULATION_SIZE - 1)]
             new_population.append(self.best)
             self.population = new_population
