@@ -19,14 +19,14 @@ Pour décider quels objets mettre dans son sac à dos, il a donné une valeur à
 - Le sac à dos contient des objets. 
 - Il est possible de changer les objets dedans.
 - Le sac à dos a un poids total qui est la somme de tous les objets qu'il contient.
-- Le sac à dos a une valeur total qui est la somme de tous les objets qu'il contient.
+- Le sac à dos a une valeur totale qui est la somme de tous les objets qu'il contient.
 - Le sac à une limite de poids qui est invariable.
 
 # Approche de la solution
 Le but de cette tâche est de maximiser la valeur du sac à dos en restant sous la limite du poids du sac à dos.
 
 ## Génétique
-On résout ce problème avec un algrorithme de génétique.
+On résout ce problème avec un algorithme génétique.
 Nous créons plusieurs sacs à dos qui contiennent des objets au hasard.
 
 ### Génome
@@ -38,7 +38,7 @@ Il y a deux possibilités pour conserver cette information dans un génome.
 2. Le génome contient l'information pour tous les objets si l'objet est dans le sac ou non. (Si le sac est trop lourd, il a une valeur de 0 (fitness))
 ![Failed to find animation](./img/animation1.gif)
 
-La premiere approche est la moins bonne puisqu'il est impossible d'utiliser le principe de mère et père, seulement la Mytose. C'est parce que si on melange les objets des deux sacs à dos, on risque de dupliquer certains objets et d'en supprimer d'autres.
+La premiere approche est la moins bonne puisqu'il est impossible d'utiliser le principe de mère et père, seulement la Mytose. En effet, si on mélange les objets des deux sacs à dos, on risque de dupliquer certains objets et d'en supprimer d'autres.
 
 Ce problème n'existe pas dans la deuxième approche. Un gène représente l'absence ou la présence d'un objet. On modifie cette information en passant la valeur du gène de 0 à 1 ou de 1 à 0.
 
@@ -57,11 +57,13 @@ La première mutation est obligatoire, sinon il n'est pas possible d'atteindre l
 La deuxième mutation n'est pas indispensable, mais sans ce type de mutation, il est difficile d'améliorer le sac à dos lorsque le poids maximal est déjà atteint, car sur une période de deux mutations, il faut d'abord enlever un objet, puis en ajouter un meilleur. Mais comme un sac à dos avec un objet en moins est toujours moins bon qu'un sac plein, cet enchaînement de mutations se produit moins souvent.
 
 # Abstraction
-Dans ce projet un peu d'abstraction était ajouté. Les classes "Population" et "Genome" peuvent être réutilisés. Sauf l'implementation de classe "Genome" doit être refait pour les nouvelles projets.
+Dans ce projet un peu d'abstraction était ajouté. Les classes "Population" et "Genome" peuvent être réutilisées. Sauf l'implementation de classe "Genome" doit être refait pour les nouvelles projets.
+
+--> Génôme réutilisable ou non ? Surement une erreur lors de l'écriture
 
 
 # Resultats
-Dans les diagrammes suivants, on peut voire la performance des algorithme pour les catégories differents.
+Dans les diagrammes suivants, on peut voir la performance des algorithmes pour les différentes catégories.
 1. Developpement du poid. (gauche)
 2. Developpement de la valeur. (gauche)
 3. Developpement de la relation entre valeur et poid. (droite)
@@ -84,7 +86,7 @@ class Parametres:
 ## Algorithme: Evaluation 1
 L'algorithme est très bon pour détecter les objets ayant le meilleur rapport valeur/poids au début de l'algorithme. On ne peut guère constater de différence dans l'amélioration de la courbe avant et après avoir atteint le poids maximal. C'est pourquoi il n'ajoute pas les objets dans le sac à dos à la même vitesse que les autres algorithmes. Comme les objets ayant le meilleur rapport sont déjà dans le sac à dos, il a moins de mal à les trouver et à les remplacer lorsque le poids maximal est déjà atteint.
 ![Failed to find animation](./img/plots/eval1.png)
-Mais il a un problème : il ne fonctionne pas dans tous les cas. Si, pour la plupart des objets, la valeur est inférieure au poids, le sac à dos n'est pas rempli, mais des objets sont retirés.
+Mais il a une faiblesse: il ne fonctionne pas dans tous les cas. Si, pour la plupart des objets, la valeur est inférieure au poids, le sac à dos n'est pas rempli, mais des objets sont retirés.
 ![Failed to find animation](./img/plots/eval4.png)
 ## Algorithme: Evaluation 2
 Il s'agit de l'algorithme classique, le seul objectif étant de maximiser la valeur. Au début, la méthode la plus rapide pour y parvenir est d'ajouter des objets au sac à dos le plus rapidement possible. Plus tard, l'algorithme essaie de remplacer les objets par d'autres objets avec un ratio plus fort. La valeur dans cet algorithme correspond au fitness.
